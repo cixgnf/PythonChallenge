@@ -4,9 +4,7 @@ Personal solutions for pythonchallenge.com
 # Level 0: 0.html
 http://www.pythonchallenge.com/pc/def/0.html
 
-The title is "warming up".
-The hint is "try to change the URL address".
-From the source code of the web page, we can see that the name of the picture is "calc.jpg".The content of the picture is 2^38.
+The title of the page is "warming up". The hint is "try to change the URL address". From the source code of the web page, we can see that the name of the picture is "calc.jpg".The content of the picture is 2^38.
 Based on the above information, it can be concluded that let us calculate 2 to the 38th power.
 
 ```python
@@ -14,14 +12,14 @@ Based on the above information, it can be concluded that let us calculate 2 to t
 print(pow(2, 38))
 ```
 
-You will get 274877906944.
+We will get 274877906944.
 
 The address of the next level is at http://www.pythonchallenge.com/pc/def/274877906944.html
 
 # Level 1: map.html
 http://www.pythonchallenge.com/pc/def/map.html
 
-The title of the page is "What about making trans?" Tells us that we are doing some kind of conversion. As you can see from the picture, K to M, O to Q, E to G is like an encryption method. The passage below the picture looks like cipher text. In alphabetical order KLM, OPQ, EFG, you can find that the rule is to shift each letter two places in the alphabetical order table.
+The title of the page is "What about making trans?". Tells us that we are doing some kind of conversion. As you can see from the picture, K to M, O to Q, E to G is like an encryption method. The passage below the picture looks like cipher text. In alphabetical order KLM, OPQ, EFG, you can find that the rule is to shift each letter two places in the alphabetical order table.
 
 ```python
 def  Caesar(str0):
@@ -100,3 +98,28 @@ The address of the next level is at http://www.pythonchallenge.com/pc/def/equali
 
 # Level 3: equality.html
 http://www.pythonchallenge.com/pc/def/equality.html
+
+The title of the page is "re", which tells us to use regular expressions. The pictures and pictures below tell us a rule: AAAaAAA, of course, A can be replaced with any letter. For this rule to be true, you can know that the beginning and end of the string must also be lowercase letters.
+
+In the webpage source file, we found a very long comment, some of the strings in line with the above rules.
+
+```python
+import re
+with open('str_re.txt', 'r') as f:
+    str_re = f.read()
+# print(str3)
+rx = re.compile(r"[a-z][A-Z]{3}[a-z][A-Z]{3}[a-z]")
+result = rx.findall(str_re)
+print(result)
+str8 = ''
+for i in result:
+    tmp = i[4]
+#     print(tmp)
+    str8 += tmp
+print(str8)
+```
+
+We will get linkedlist.
+When we visit http://www.pythonchallenge.com/pc/def/linkedlist.html, the webpage prompts that we should visit http://www.pythonchallenge.com/pc/def/linkedlist.php
+
+# Level 4: linkedlist.php
