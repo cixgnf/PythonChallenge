@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+# http://www.pythonchallenge.com/pc/def/map.html
 def  Caesar(str0):
     str1 = []
     for i in str0:
@@ -22,3 +22,8 @@ notes = Caesar(str0)
 print(str0)
 str2 = "".join(notes)
 print(str2)
+
+print(''.join(Caesar('map')))
+
+# You will get ocr. The address of the next level is
+# http: //www.pythonchallenge.com/pc/def/ocr.html
