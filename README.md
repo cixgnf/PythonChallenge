@@ -1,5 +1,7 @@
 # PythonChallenge
-Personal solutions for pythonchallenge.com
+Personal solutions for http://www.pythonchallenge.com.
+
+Some ideas are found through search engines, and some are my own ideas. The code is mostly written by myself, it is a bit messy, if you find any problems, please point it out, thank you!
 
 # Level 0: 0.html
 http://www.pythonchallenge.com/pc/def/0.html
@@ -130,6 +132,8 @@ http://www.pythonchallenge.com/pc/def/linkedlist.php
 
 The title of the page is "follow the chain". When we observe the source files of the webpage, we can find that the comment tells us to use "urllib" and it takes more than four hundred attempts. There is a link "linkedlist.php? Nothing = 12345" on the picture. After clicking, "and the next nothing is 44827" appears. It tells us that the value of the next thing is "44827", replace "12345" in the link with "44827" to get the value of the next thing, and repeat to get the result.
 
+We use the requests module to replace the urllib module.
+
 At the 85th time, the prompt was "Yes. Divide by two and keep going." There are two methods here. The first is to divide the result 16044 of the 84th by 2 according to the prompt, and get 8022 to use it as the value of nothing to continue the loop. The second is to continue to loop with "going." as the value of nothing. Both methods will have the same result, the only difference is the number of times. In here we use the second methods.
 ```python
 import requests
@@ -166,3 +170,55 @@ while payload['nothing'] != 'peak.html' :
     i += 1
 ```
 
+The address of the next level is at http://www.pythonchallenge.com/pc/def/peak.html
+
+# Level 5: peak.html
+http://www.pythonchallenge.com/pc/def/peak.html
+
+The title of the page is "peak hell", and the content of the page is a picture of a mountain and a sentence "pronounce it". In the source code of the webpage, we found a hidden link ```<peakhell src =" banner.p "/>``` and a comment ```<!-Peak hell sounds familiar?->```. Some garbled text appears after the link is opened. The comment tells us to find something pronounce similar to "peak hell". I got stuck here. After searching on the Internet, I learned that PYTHON has a module for serialization and deserialization called pickle and it has a similar pronunciation. This level is let us use the pickle module to deserialize the content of "banner.p".
+```python
+import requests
+import pickle
+
+# text = requests.get("http://www.pythonchallenge.com/pc/def/banner.p").content
+# print("1", text)
+with open('banner.p', 'rb') as f:
+    banner = f.readlines()
+# print(type(banner), type(banner[0]))
+texts = b''
+for i in banner:
+    texts += i
+#     print(texts)
+# print('2', texts)
+data = pickle.loads(texts)
+print(data)
+for i in data :
+    print("".join(j[0] * j[1] for j in i))
+```
+The resualt is "channel".
+```python
+                                                                                               
+              #####                                                                      ##### 
+               ####                                                                       #### 
+               ####                                                                       #### 
+               ####                                                                       #### 
+               ####                                                                       #### 
+               ####                                                                       #### 
+               ####                                                                       #### 
+               ####                                                                       #### 
+      ###      ####   ###         ###       #####   ###    #####   ###          ###       #### 
+   ###   ##    #### #######     ##  ###      #### #######   #### #######     ###  ###     #### 
+  ###     ###  #####    ####   ###   ####    #####    ####  #####    ####   ###     ###   #### 
+ ###           ####     ####   ###    ###    ####     ####  ####     ####  ###      ####  #### 
+ ###           ####     ####          ###    ####     ####  ####     ####  ###       ###  #### 
+####           ####     ####     ##   ###    ####     ####  ####     #### ####       ###  #### 
+####           ####     ####   ##########    ####     ####  ####     #### ##############  #### 
+####           ####     ####  ###    ####    ####     ####  ####     #### ####            #### 
+####           ####     #### ####     ###    ####     ####  ####     #### ####            #### 
+ ###           ####     #### ####     ###    ####     ####  ####     ####  ###            #### 
+  ###      ##  ####     ####  ###    ####    ####     ####  ####     ####   ###      ##   #### 
+   ###    ##   ####     ####   ###########   ####     ####  ####     ####    ###    ##    #### 
+      ###     ######    #####    ##    #### ######    ###########    #####      ###      ######
+                                                                                               
+```
+The address of the next level is at http://www.pythonchallenge.com/pc/def/channel.html
