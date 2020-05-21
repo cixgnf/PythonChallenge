@@ -4,7 +4,10 @@ Personal solutions for pythonchallenge.com
 # Level 0: 0.html
 http://www.pythonchallenge.com/pc/def/0.html
 
-The title of the page is "warming up". The hint is "try to change the URL address". From the source code of the web page, we can see that the name of the picture is "calc.jpg".The content of the picture is 2^38.
+The title of the page is "warming up". 
+The hint is "try to change the URL address". 
+From the source code of the web page, we can see that the name of the picture is "calc.jpg".
+The content of the picture is 2^38.
 Based on the above information, it can be concluded that let us calculate 2 to the 38th power.
 
 ```python
@@ -19,7 +22,7 @@ The address of the next level is at http://www.pythonchallenge.com/pc/def/274877
 # Level 1: map.html
 http://www.pythonchallenge.com/pc/def/map.html
 
-The title of the page is "What about making trans?". Tells us that we are doing some kind of conversion. As you can see from the picture, K to M, O to Q, E to G is like an encryption method. The passage below the picture looks like cipher text. In alphabetical order KLM, OPQ, EFG, you can find that the rule is to shift each letter two places in the alphabetical order table.
+The title of the page is "What about making trans?". Tells us that we are doing some kind of conversion. As we can see from the picture, K to M, O to Q, E to G is like an encryption method. The passage below the picture looks like cipher text. In alphabetical order KLM, OPQ, EFG, we can find that the rule is to shift each letter two places in the alphabetical order table.
 
 ```python
 def  Caesar(str0):
@@ -99,7 +102,7 @@ The address of the next level is at http://www.pythonchallenge.com/pc/def/equali
 # Level 3: equality.html
 http://www.pythonchallenge.com/pc/def/equality.html
 
-The title of the page is "re", which tells us to use regular expressions. The pictures and pictures below tell us a rule: AAAaAAA, of course, A can be replaced with any letter. For this rule to be true, you can know that the beginning and end of the string must also be lowercase letters.
+The title of the page is "re", which tells us to use regular expressions. The pictures and pictures below tell us a rule: AAAaAAA, of course, A can be replaced with any letter. For this rule to be true, we can know that the beginning and end of the string must also be lowercase letters.
 
 In the webpage source file, we found a very long comment, some of the strings in line with the above rules.
 
@@ -123,3 +126,43 @@ We will get linkedlist.
 When we visit http://www.pythonchallenge.com/pc/def/linkedlist.html, the webpage prompts that we should visit http://www.pythonchallenge.com/pc/def/linkedlist.php
 
 # Level 4: linkedlist.php
+http://www.pythonchallenge.com/pc/def/linkedlist.php
+
+The title of the page is "follow the chain". When we observe the source files of the webpage, we can find that the comment tells us to use "urllib" and it takes more than four hundred attempts. There is a link "linkedlist.php? Nothing = 12345" on the picture. After clicking, "and the next nothing is 44827" appears. It tells us that the value of the next thing is "44827", replace "12345" in the link with "44827" to get the value of the next thing, and repeat to get the result.
+
+At the 85th time, the prompt was "Yes. Divide by two and keep going." There are two methods here. The first is to divide the result 16044 of the 84th by 2 according to the prompt, and get 8022 to use it as the value of nothing to continue the loop. The second is to continue to loop with "going." as the value of nothing. Both methods will have the same result, the only difference is the number of times. In here we use the second methods.
+```python
+import requests
+import re
+import time
+
+def geturl(url, payload):
+    ry = requests.Session()
+    
+    headers = {'Accept' : "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+            'Accept-Encoding' : "gzip, deflate",
+            'Accept-Language' : "zh-CN,zh;q=0.9",
+            'Connection' : "keep-alive",
+            'Host' : "www.pythonchallenge.com",
+            'Referer' : "http://www.pythonchallenge.com/pc/def/linkedlist.php",
+            'Upgrade-Insecure-Requests' : "1",
+            'User-Agent' : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'"
+            }
+    
+    status = ry.get(url, params=payload, headers=headers).text
+    return status
+url = 'http://www.pythonchallenge.com/pc/def/linkedlist.php'
+payload = {'nothing': '12345'}
+i = 0
+while payload['nothing'] != 'peak.html' :
+    try :
+        str0 = geturl(url, payload)
+        print(i, payload['nothing'], str0)
+        payload['nothing'] = str0.split(' ')[-1]
+    except Exception as e:
+        print(i, 'NetWork ERR, retry!')
+    #         print(repr(e))
+    #         time.sleep(1)
+    i += 1
+```
+
