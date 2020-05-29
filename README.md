@@ -24,7 +24,7 @@ The address of the next level is http://www.pythonchallenge.com/pc/def/274877906
 # Level 1: map.html
 http://www.pythonchallenge.com/pc/def/map.html
 
-The title of the page is "What about making trans?". Tells us that we are doing some kind of conversion. As we can see from the picture, K to M, O to Q, E to G is like an encryption method. The passage below the picture looks like cipher text. In alphabetical order KLM, OPQ, EFG, we can find that the rule is to shift each letter two places in the alphabetical order table.
+The title of the page is "What about making trans?". It tells us that we are doing some kind of conversion. As we can see from the picture, K to M, O to Q, E to G is like an encryption method. The passage below the picture looks like cipher text. We can find that the rule is to shift each letter two places backward in the alphabetical order table.
 
 ```python
 def  Caesar(str0):
@@ -56,7 +56,7 @@ We can get "ocr" by converting the "map" in the URL.
 ```python
 print(''.join(Caesar('map')))
 ```
-The address of the next level is at http://www.pythonchallenge.com/pc/def/ocr.html
+The address of the next level is http://www.pythonchallenge.com/pc/def/ocr.html
 
 # Level 2: ocr.html
 http://www.pythonchallenge.com/pc/def/ocr.html
@@ -65,7 +65,7 @@ The title of the page is "ocr", which may allow us to recognize the text in the 
 
 We found such a sentence in the comments of the webpage source file: "find rare characters in the mess below", and found a large section of irregular character strings in the following comments.
 
-Therefore, We need find the rare characters in the second comments.
+Therefore, We need to find the rare characters in the second comments.
 
 ```python
 # 1. Find the number of appearance for each character. 
@@ -99,7 +99,7 @@ for i in str6 :
 dict1 = sorted(dict0.items(), key=lambda dict0:dict0[1], reverse = 0)
 print(dict1)
 ```
-The address of the next level is at http://www.pythonchallenge.com/pc/def/equality.html
+The address of the next level is  http://www.pythonchallenge.com/pc/def/equality.html
 
 # Level 3: equality.html
 http://www.pythonchallenge.com/pc/def/equality.html
