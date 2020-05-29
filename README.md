@@ -10,7 +10,7 @@ The title of the page is "warming up".
 The hint is "try to change the URL address". 
 From the source code of the web page, we can see that the name of the picture is "calc.jpg".
 The content of the picture is 2^38.
-Based on the above information, we can know to calculate 2 to the 38th power.
+Based on the above information, we can conclude to calculate 2 to the 38th power.
 
 ```python
 # print(2**38)
@@ -19,7 +19,7 @@ print(pow(2, 38))
 
 We will get 274877906944.
 
-The address of the next level is at http://www.pythonchallenge.com/pc/def/274877906944.html
+The address of the next level is http://www.pythonchallenge.com/pc/def/274877906944.html
 
 # Level 1: map.html
 http://www.pythonchallenge.com/pc/def/map.html
